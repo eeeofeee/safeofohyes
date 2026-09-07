@@ -423,7 +423,8 @@ a{color:inherit;}
 }
 .shorts-cta.show{display:flex;}
 .shorts-cta p{color:#fff; font-size:13px; font-weight:700; margin:0;}
-.shorts-caption{color:#fff; font-size:13px; font-weight:600; text-align:center; margin:14px 0 0; opacity:.85;}
+.shorts-caption{color:#fff; font-size:13px; font-weight:600; text-align:center; margin:14px 0 10px; opacity:.85;}
+.shorts-footer{display:flex; gap:8px;}
 
 
 /* ---------- Toast ---------- */
@@ -924,6 +925,11 @@ a{color:inherit;}
       <div class="shorts-dots" id="shortsDots"></div>
     </div>
     <p class="shorts-caption" id="shortsCaption"></p>
+    <div class="shorts-footer">
+      <a class="btn-pill" id="shortsYtLinkPersistent" href="#" target="_blank" rel="noopener" style="flex:1; justify-content:center;">▶ 전체 영상 보기</a>
+      <button class="btn-pill outline" style="padding:0 18px;" onclick="copyLink(document.getElementById('shortsYtLinkPersistent').href)" title="링크 복사">🔗</button>
+      <button class="btn-pill outline" style="padding:0 18px;" onclick="copyTBM(currentShortsVideo.id)" title="TBM 공유용 문구 복사">📋</button>
+    </div>
   </div>
 </div>
 
@@ -1217,6 +1223,7 @@ function renderShortsSlide(){
   vid.play().catch(()=>{});
   document.getElementById('shortsCaption').textContent = clip.caption || '';
   document.getElementById('shortsYtLink').href = v.url;
+  document.getElementById('shortsYtLinkPersistent').href = v.url;
   document.getElementById('shortsPrev').style.display = shortsIndex > 0 ? 'flex' : 'none';
   document.getElementById('shortsNext').style.display = shortsIndex < v.shorts.length - 1 ? 'flex' : 'none';
   document.getElementById('shortsCta').classList.remove('show');
